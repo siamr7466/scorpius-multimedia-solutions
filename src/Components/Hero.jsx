@@ -14,8 +14,7 @@ const Hero = () => {
 
         {/* Subheading */}
         <h4 className="text-lg sm:text-xl md:text-xl lg:text-xl w-full md:w-1/2 lg:w-1/2 text-[#707070]">
-          From vision to reality, We design, edit and optimize, Your all-in-one
-          digital partner
+          From vision to reality, We design, edit and optimize, Your all-in-one digital partner
         </h4>
       </div>
     </div>
