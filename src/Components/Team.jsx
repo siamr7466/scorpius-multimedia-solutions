@@ -22,7 +22,7 @@ const Team = () => {
       },
       {
         name: "Mashfika Yasmin",
-        role: "Agent",
+        role: "Lead Generation Specialist",
         img: "./Images/mashfi.jpg",
       },
     ];
