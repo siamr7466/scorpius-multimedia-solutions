@@ -1,6 +1,8 @@
 import React from "react";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
-import VideoProduction from "../assets/VideoProduction";
+import Lottie from "lottie-react";
+import videoProduction from "./Animations/videoProduction.json"; 
+import WEB from "./Animations/WEB.json";
+import digitalMarkting from "./Animations/digitalMarkting.json";
 
 const Projects = () => {
   // Array of projects
@@ -9,24 +11,24 @@ const Projects = () => {
       id: 1,
       title: "Content Creation & Video Production",
       description: "Covers video creation, editing, and storytelling for clients.",
-      media: "video", // Indicates this project uses a video
-      src: "/images/project2.jpg", // Path to video
-      link: "https://example.com/project1", // Project link
+      media: "lottie",
+      lottieSrc: videoProduction,
+      link: "https://example.com/project1",
     },
     {
       id: 2,
       title: "Website & SEO Solutions",
-      description: " Includes website development, search engine optimization, and online visibility improvement.",
-      media: "video", // Indicates this project uses an image
-      src: "", // Path to image
+      description: "Includes website development, search engine optimization, and online visibility improvement.",
+      media: "lottie", // ✅ Corrected
+      lottieSrc: WEB, // ✅ Now it will show animation
       link: "https://example.com/project2",
     },
     {
       id: 3,
       title: "Digital Marketing & Social Media Growth",
       description: "Focuses on consulting, strategy, and marketing to expand reach on social media and digital platforms.",
-      media: "video", // Indicates this project uses an image
-      src: "/images/project3.jpg", // Path to image
+      media: "lottie",
+      lottieSrc: digitalMarkting,
       link: "https://example.com/project3",
     },
   ];
@@ -45,29 +47,9 @@ const Projects = () => {
             key={project.id}
             className="bg-gray-100 p-4 border-2 border-[#dadada] rounded-lg transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-lg"
           >
-            {/* Project Media (Video or Image) */}
-            {project.media === "video" ? (
-              //   <video
-              //     autoPlay
-              //     loop
-              //     muted
-              //     className='w-full h-auto object-cover rounded-t-lg'
-              //   >
-              //     <source src={project.src} type='video/webm' />
-              //     Your browser does not support the video tag.
-              //   </video>
-              <Player
-                autoplay
-                loop
-                src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-                style={{ height: "300px", width: "300px" }}
-              >
-                <Controls
-                  visible={false}
-                  buttons={["play", "repeat", "frame", "debug"]}
-                />
-              </Player>
-            // <VideoProduction />
+            {/* Project Media (Lottie Animation or Image) */}
+            {project.media === "lottie" ? (
+              <Lottie animationData={project.lottieSrc} className="h-64 w-full" />
             ) : (
               <img
                 src={project.src}

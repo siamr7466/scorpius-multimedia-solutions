@@ -7,8 +7,9 @@ import Projects from "./Components/Services";
 import Team from "./Components/Team";
 import FAQ from "./Components/FAQ";
 import ContactUs from "./Components/ContactUs";
-import Footer from "./Components/Footer";
+// import Footer from "./Components/Footer";
 import Layout from "./Components/Layout";
+import ScrollToTop from "./Components/ScrollToTop";
 
 const Home = () => {
   return (
@@ -27,6 +28,7 @@ const Home = () => {
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Nav />
       <Layout>
       <Routes>
