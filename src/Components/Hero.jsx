@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="relative z-10">
         {/* Main Heading */}
         <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl w-full md:w-1/2 mb-8 text-[#1a1a1a]">
-          Scorpius Multimedia
+          Scorpius Multimedia Solutions
         </h1>
 
         {/* Subheading */}
