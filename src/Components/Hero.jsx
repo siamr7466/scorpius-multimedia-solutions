@@ -8,8 +8,8 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10">
         {/* Main Heading */}
-        <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl w-full md:w-1/2 mb-8 text-[#1a1a1a]">
-          Scorpius Multimedia Solution
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl w-full md:w-1/2 mb-8 lg:w-full text-[#1a1a1a]">
+          Scorpius <br/>Multimedia Solution
         </h1>
 
         {/* Subheading */}
