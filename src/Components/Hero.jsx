@@ -9,11 +9,11 @@ const Hero = () => {
       <div className="relative z-10">
         {/* Main Heading */}
         <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl w-full md:w-1/2 mb-8 text-[#1a1a1a]">
-          Scorpius Multimedia Solutions
+          Scorpius Multimedia Solution
         </h1>
 
         {/* Subheading */}
-        <h4 className="text-lg sm:text-xl md:text-xl lg:text-xl w-full md:w-1/2 lg:w-1/3 text-[#707070]">
+        <h4 className="text-lg sm:text-xl md:text-xl lg:text-xl w-full md:w-1/2 lg:w-1/2 text-[#707070]">
           From vision to reality, We design, edit and optimize, Your all-in-one
           digital partner
         </h4>
