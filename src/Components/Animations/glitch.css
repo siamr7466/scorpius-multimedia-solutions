@@ -1,0 +1,78 @@
+.glitch-text {
+  position: relative;
+  color: #0ff;
+  text-shadow: 0 0 2px #0ff, 0 0 5px #0ff, 0 0 10px #0ff;
+}
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(class);
+  position: absolute;
+  left: 2px;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  color: #0ff;
+  background: black;
+  clip: rect(0, 900px, 0, 0);
+  animation: glitch 2s infinite linear alternate-reverse;
+}
+.glitch-text::after {
+  left: -2px;
+  animation-delay: 1s;
+}
+
+@keyframes glitch {
+  0% {
+    clip: rect(42px, 9999px, 44px, 0);
+  }
+  10% {
+    clip: rect(12px, 9999px, 16px, 0);
+  }
+  20% {
+    clip: rect(84px, 9999px, 90px, 0);
+  }
+  30% {
+    clip: rect(14px, 9999px, 20px, 0);
+  }
+  40% {
+    clip: rect(70px, 9999px, 76px, 0);
+  }
+  50% {
+    clip: rect(52px, 9999px, 58px, 0);
+  }
+  60% {
+    clip: rect(30px, 9999px, 36px, 0);
+  }
+  70% {
+    clip: rect(90px, 9999px, 96px, 0);
+  }
+  80% {
+    clip: rect(20px, 9999px, 26px, 0);
+  }
+  90% {
+    clip: rect(60px, 9999px, 66px, 0);
+  }
+  100% {
+    clip: rect(10px, 9999px, 14px, 0);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+.flicker {
+  animation: flicker 2s infinite;
+}
+
+.glow {
+  text-shadow: 0 0 4px cyan, 0 0 8px cyan;
+}

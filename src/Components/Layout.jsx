@@ -1,11 +1,13 @@
 import React from "react";
-import Footer from "./Footer"; // Import Footer component
+import Footer from "./Footer";
+import ParticleBackground from "./ParticleBackground";
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-grow">{children}</main> {/* Page content */}
-      <Footer /> {/* Footer always appears */}
+    <div className="relative flex flex-col min-h-screen z-10">
+      <ParticleBackground />
+      <main className="flex-grow relative z-10">{children}</main>
+      <Footer />
     </div>
   );
 };

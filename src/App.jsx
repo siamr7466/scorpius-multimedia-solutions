@@ -10,8 +10,16 @@ import ContactUs from "./Components/ContactUs";
 // import Footer from "./Components/Footer";
 import Layout from "./Components/Layout";
 import ScrollToTop from "./Components/ScrollToTop";
+import LocomotiveScroll from 'locomotive-scroll';
+
+
 
 const Home = () => {
+
+
+
+const locomotiveScroll = new LocomotiveScroll();
+
   return (
     <div>
       <Hero />
