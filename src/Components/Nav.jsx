@@ -1,27 +1,45 @@
 import { useState, useEffect } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
+    if (!isHome) {
+      setScrolled(true);
+      return;
+    }
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > window.innerHeight * 0.65);
     };
+
+    handleScroll();
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome, location.pathname]);
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+    { name: "Portfolio", path: "/portfolio" },
+    { name: "Team", path: "/team" },
+    { name: "Contact Us", path: "/contact" },
+  ];
 
   return (
     <>
       <nav
-        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500
-          rounded-xl
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 rounded-xl
           ${scrolled
-            ? "bg-white/30 backdrop-blur-none shadow-lg px-6 py-3 max-w-7xl w-[95%] transparent"
-            : " px-6 py-4 max-w-7xl w-[95%] "
+            ? "bg-white/40 backdrop-blur-none shadow-lg px-6 py-3 max-w-7xl w-[95%]"
+            : "px-6 py-4 max-w-7xl w-[95%] text-white"
           }
         `}
         style={{ maxWidth: "96rem" }}
@@ -35,25 +53,23 @@ const Navbar = () => {
             Scorpius<span className="text-[#FF007A]">.</span>
           </Link>
 
-          {/* Desktop Menu */}
           <ul
             className={`hidden md:flex space-x-10 font-medium transition-colors duration-300 ${scrolled ? "text-[#111111]" : "text-white"
               }`}
           >
-            {["Home", "Services", "Portfolio", "Team", "Contact Us"].map((item) => (
-              <li key={item} className="relative group">
+            {navItems.map(({ name, path }) => (
+              <li key={name} className="relative group">
                 <Link
-                  to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s/g, "")}`}
+                  to={path}
                   className="transition-colors duration-300 text-inherit group-hover:text-[#33B8ED]"
                 >
-                  {item}
+                  {name}
                   <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-[#33B8ED] transition-all duration-300 group-hover:w-full" />
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* Mobile Hamburger */}
           <button
             onClick={() => setIsOpen(true)}
             className={`md:hidden focus:outline-none z-50 ${scrolled ? "text-[#111111]" : "text-white"
@@ -65,7 +81,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile fullscreen menu */}
       {isOpen && (
         <div className="fixed inset-0 bg-white z-50 flex flex-col justify-center items-center space-y-10">
           <button
@@ -76,14 +91,14 @@ const Navbar = () => {
             <FiX size={32} />
           </button>
 
-          {["Home", "Services", "Portfolio", "Team", "Contact Us"].map((item) => (
+          {navItems.map(({ name, path }) => (
             <Link
-              key={item}
-              to={item === "Home" ? "/" : `/${item.toLowerCase().replace(/\s/g, "")}`}
+              key={name}
+              to={path}
               onClick={() => setIsOpen(false)}
               className="text-3xl font-semibold text-[#111111] hover:text-[#FF007A] transition"
             >
-              {item}
+              {name}
             </Link>
           ))}
         </div>

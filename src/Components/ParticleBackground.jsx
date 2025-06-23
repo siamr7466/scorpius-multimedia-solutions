@@ -51,9 +51,10 @@ const ParticleBackground = () => {
 
     document.body.appendChild(script);
 
-    // ⛔ Do NOT remove the canvas automatically (this breaks background!)
+    // Don't remove canvas on unmount, particles.js manages it
     return () => {
-      if (script) document.body.removeChild(script);
+      // Optional: You can comment this out if removal breaks it
+      // if (script) document.body.removeChild(script);
     };
   }, []);
 
@@ -67,7 +68,7 @@ const ParticleBackground = () => {
         height: "100%",
         width: "100%",
         background: "#000015",
-        zIndex: 0,
+        pointerEvents: "none",  // important so particles don't block clicks
       }}
     />
   );

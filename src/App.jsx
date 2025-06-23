@@ -11,6 +11,7 @@ import Footer from "./Components/Footer";
 import Layout from "./Components/Layout";
 import ScrollToTop from "./Components/ScrollToTop";
 
+// Homepage content
 const Home = () => {
   return (
     <>
@@ -20,8 +21,37 @@ const Home = () => {
       <Team />
       <FAQ />
       <ContactUs />
-      <Footer />
+      {/* <Footer /> */}
     </>
+  );
+};
+
+// Standalone Portfolio Page with solid white background
+const PortfolioPage = () => {
+  return (
+    <div className="w-full bg-white min-h-screen px-4 sm:px-6 lg:px-8">
+      <Portfolio />
+    </div>
+  );
+};
+
+// Responsive standalone Team Page with full screen background and centered content
+const TeamPage = () => {
+  return (
+    <div className="w-full min-h-screen bg-[#F4F2F8] flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-screen-xl">
+        <Team />
+      </div>
+    </div>
+  );
+};
+
+// Standalone Contact Page with full width white background
+const ContactPage = () => {
+  return (
+    <div className="w-full bg-white min-h-screen px-4 sm:px-6 lg:px-8">
+      <ContactUs />
+    </div>
   );
 };
 
@@ -31,19 +61,16 @@ const AppContent = () => {
   return (
     <>
       <Nav />
-      <Layout>
-        <Routes>
+      <Layout key={location.pathname}>
+        <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
-          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/services" element={<Projects />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/contact" element={<ContactUs />} />
-          <Route path="/footer" element={<Footer />} />
-
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* <Route path="/footer" element={<Footer />} /> */}
         </Routes>
       </Layout>
-
-
     </>
   );
 };

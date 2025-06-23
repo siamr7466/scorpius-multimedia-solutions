@@ -34,8 +34,8 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section className="bg-[#F4F2F8] py-28 px-5 font-sans">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-[#F4F2F8] py-28 w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] px-0">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 font-sans">
         {/* Section Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
