@@ -5,102 +5,96 @@ import WEB from "./Animations/WEB.json";
 import digitalMarkting from "./Animations/digitalMarkting.json";
 import { motion } from "framer-motion";
 
+const projects = [
+  {
+    id: 1,
+    title: "Content Creation & Video Production",
+    description: "Covers video creation, editing, and storytelling for clients.",
+    media: "lottie",
+    lottieSrc: videoProduction,
+    link: "https://example.com/project1",
+  },
+  {
+    id: 2,
+    title: "Website & SEO Solutions",
+    description: "Includes website development, SEO, and visibility improvement.",
+    media: "lottie",
+    lottieSrc: WEB,
+    link: "https://example.com/project2",
+  },
+  {
+    id: 3,
+    title: "Digital Marketing & Social Media Growth",
+    description: "Strategy and consulting to grow digital presence.",
+    media: "lottie",
+    lottieSrc: digitalMarkting,
+    link: "https://example.com/project3",
+  },
+];
+
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Content Creation & Video Production",
-      description: "Covers video creation, editing, and storytelling for clients.",
-      media: "lottie",
-      lottieSrc: videoProduction,
-      link: "https://example.com/project1",
-      bg: "bg-gradient-to-br from-green-400 via-blue-500 to-indigo-500",
-    },
-    {
-      id: 2,
-      title: "Website & SEO Solutions",
-      description: "Includes website development, search engine optimization, and online visibility improvement.",
-      media: "lottie",
-      lottieSrc: WEB,
-      link: "https://example.com/project2",
-      bg: "bg-gradient-to-br from-green-400 via-blue-500 to-indigo-500",
-    },
-    {
-      id: 3,
-      title: "Digital Marketing & Social Media Growth",
-      description: "Focuses on consulting, strategy, and marketing to expand reach on social media and digital platforms.",
-      media: "lottie",
-      lottieSrc: digitalMarkting,
-      link: "https://example.com/project3",
-      bg: "bg-gradient-to-br from-green-400 via-blue-500 to-indigo-500",
-    },
-  ];
-
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F4EFFA] py-20 px-4 font-sans">
-      <div className="w-full max-w-7xl">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+    <section className="bg-[#F4F2F8] py-28 px-5 font-sans">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-left lg:text-7xl md:text-6xl sm:text-5xl text-4xl text-[#1a1a1a] mb-12"
+          className="text-[clamp(2rem,6vw,5rem)] font-light text-[#111111] mb-20 leading-tight"
         >
-          <motion.h1
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >Services</motion.h1>
-        </motion.div>
+          Services
+        </motion.h2>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <motion.div
+        {/* Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {projects.map((project, index) => (
+            <motion.a
               key={project.id}
-              className={`rounded-2xl text-white p-6 min-h-[480px] flex flex-col justify-between transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl ${project.bg}`}
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true, amount: 0.3 }}
+              className="group block bg-white rounded-3xl p-6 min-h-[480px] shadow-md hover:shadow-lg transition-transform duration-300 hover:-translate-y-2 flex flex-col justify-between"
             >
-              {/* Animation */}
-              <div className="h-52 mb-4">
-                {project.media === "lottie" ? (
+              {/* Lottie Animation */}
+              <div className="h-52 mb-6 rounded-xl overflow-hidden bg-[#F9F9F9]">
+                {project.media === "lottie" && (
                   <Lottie animationData={project.lottieSrc} className="h-full w-full" />
-                ) : (
-                  <img
-                    src={project.src}
-                    alt={project.title}
-                    className="w-full h-auto object-cover rounded-lg"
-                  />
                 )}
               </div>
 
               {/* Text */}
               <div>
-                <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
-                <p className="text-white/90">{project.description}</p>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white underline mt-3 inline-block"
-                >
+                <h3 className="text-2xl font-semibold mb-3 text-[#111111]">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 mb-5 leading-relaxed">
+                  {project.description}
+                </p>
+                <span className="inline-flex items-center gap-2 font-semibold text-[#111111] group-hover:text-[#0a122a] group-hover:underline">
                   View Project
-                </a>
+                  <svg
+                    className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

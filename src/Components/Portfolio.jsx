@@ -1,58 +1,61 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom'; // Import Link for navigation
+import { useParams, Link } from 'react-router-dom';
 import VideoGallery from './Gallery';
 
-const Portfolio = ({ isHomepage = false }) => { // Add a prop to check if it's on the homepage
-  const { category } = useParams(); // Get the category from URL params
-  const [activeTab, setActiveTab] = useState(category || "reels");  // Default to "reels" if no category in URL
+const Portfolio = ({ isHomepage = false }) => {
+  const { category } = useParams();
+  const [activeTab, setActiveTab] = useState(category || "reels");
 
   useEffect(() => {
-    // Update activeTab when category changes in URL
     setActiveTab(category || "reels");
   }, [category]);
 
   return (
-    <div className="text-[#1a1a1a] py-10 px-5 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-15 font-sans overflow-hidden">
-      <h2 className="text-left lg:text-7xl md:text-6xl sm:text-5xl text-4xl text-[#1a1a1a] mb-15">Portfolio</h2>
+    <div className="bg-white py-16 w-full">
+      <div className="max-w-7xl mx-auto px-5">
+        {/* Heading */}
+        <h2 className="text-left lg:text-7xl md:text-6xl sm:text-5xl text-4xl mb-12 font-light text-[#1a1a1a]">
+          Portfolio
+        </h2>
 
-      {/* Tabs for switching between Reels & Long-form */}
-      <div className="flex justify-center space-x-4 mb-6">
-        <button
-          className={`px-6 py-2 rounded-md transition ${
-            activeTab === "reels"
-              ? "bg-[#f5f5f5] border-1 scale-105"
-              : "bg-gray-100 hover:bg-gray-100"
-          }`}
-          onClick={() => setActiveTab("reels")}
-        >
-          Reels
-        </button>
-        <button
-          className={`px-6 py-2 rounded-md transition ${
-            activeTab === "longform"
-              ? "bg-[#f5f5f5] border-1 scale-105"
-              : "bg-gray-100 hover:bg-gray-100"
-          }`}
-          onClick={() => setActiveTab("longform")}
-        >
-          Long-form Videos 
-        </button>
-      </div>
-
-      {/* Video Gallery Component */}
-      <VideoGallery category={activeTab} limit={isHomepage ? 3 : null} /> {/* Pass limit prop to show only 3 projects on homepage */}
-
-      {/* Show "View More" button only on homepage */}
-      {isHomepage && (
-        <div className="mt-15 text-center">
-          <Link
-            to="/portfolio" // Redirect to the full portfolio page
-            className="bg-white-400 text-black px-6 py-2 border-1 rounded-md hover:bg-gray-100 transition-colors"
-          >
-            View More
-          </Link>
+        {/* Tabs */}
+        <div className="flex justify-center gap-6 mb-12">
+          {["reels", "longform"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`relative px-6 py-3 rounded-md font-medium overflow-hidden transition-all duration-300
+                ${activeTab === tab
+                  ? "text-white bg-[#0a122a]"
+                  : "text-[#0a122a] bg-white hover:text-white"
+                }
+                before:absolute before:inset-0 before:scale-x-0 before:origin-left before:transition-transform before:duration-300 before:bg-[#0a122a] hover:before:scale-x-100
+                before:rounded-md
+              `}
+              style={{ zIndex: 1 }}
+            >
+              <span className="relative z-10 capitalize">{tab === 'reels' ? 'Reels' : 'Long-form Videos'}</span>
+            </button>
+          ))}
         </div>
-      )}
+
+        {/* Video Gallery */}
+        <VideoGallery category={activeTab} limit={isHomepage ? 3 : null} />
+
+        {/* View More Button */}
+        {isHomepage && (
+          <div className="mt-12 text-center">
+            <Link
+              to="/portfolio"
+              className="relative inline-block px-6 py-3 text-[#0a122a] bg-white rounded-md font-medium overflow-hidden
+                before:absolute before:inset-0 before:bg-[#0a122a] before:scale-x-0 hover:before:scale-x-100 before:origin-left before:transition-transform before:duration-300
+                hover:text-white transition-colors duration-300 before:rounded-md border border-[#0a122a]"
+            >
+              <span className="relative z-10">View More</span>
+            </Link>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

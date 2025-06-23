@@ -1,13 +1,19 @@
 import React from "react";
+import Navbar from "./Nav";
 import Footer from "./Footer";
 import ParticleBackground from "./ParticleBackground";
 
 const Layout = ({ children }) => {
   return (
-    <div className="relative flex flex-col min-h-screen z-10">
+    <div className="relative min-h-screen overflow-hidden">
       <ParticleBackground />
-      <main className="flex-grow relative z-10">{children}</main>
-      <Footer />
+      <div className="relative z-10 flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow px-4 py-8">
+          {children}
+        </main>
+        {/* <Footer /> */}
+      </div>
     </div>
   );
 };
